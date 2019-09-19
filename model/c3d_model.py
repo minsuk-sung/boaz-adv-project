@@ -19,6 +19,7 @@ Implements the inference pattern for model building.
 inference_c3d(): Builds the model as far as is required for running the network
 forward to make predictions.
 """
+# 말 그대로 C3D model 돌리는 코드
 
 import tensorflow as tf
 
@@ -34,15 +35,22 @@ NUM_FRAMES_PER_CLIP = 16
 
 "-----------------------------------------------------------------------------------------------------------------------"
 
+# tf.nn.conv3d : Computes a 3-D convolution given 5-D input and filter tensors.
+# convolution 함수
 def conv3d(name, l_input, w, b):
   return tf.nn.bias_add(
           tf.nn.conv3d(l_input, w, strides=[1, 1, 1, 1, 1], padding='SAME'),
           b
           )
 
+# all pooling layers are max pooling
+# pooling 함수 : max pooling
+# 첫번째 layer는 kernel size가 다르므로 k를 두어 나중에 적용했다.
 def max_pool(name, l_input, k):
   return tf.nn.max_pool3d(l_input, ksize=[1, k, 2, 2, 1], strides=[1, k, 2, 2, 1], padding='SAME', name=name)
 
+# 본격적으로 모델 돌리는 함수 !!
+# 논문 모델을 구현
 def inference_c3d(_X, _dropout, batch_size, _weights, _biases):
 
   # Convolution Layer
