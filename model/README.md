@@ -1,4 +1,6 @@
 # real time action recognition
+https://github.com/FingerRec/real_time_video_action_recognition
+
 ## example
 
 ![](http://owvctf4l4.bkt.clouddn.com/ql41i-wgywx.gif)
@@ -23,9 +25,11 @@ python real_time_c3d.py
 ```
 Two test video provided in directory test_video/. Video can be merged  [here](https://www.aconvert.com/cn/video/merge/) free.
 
-This code can be run directly use cpu, but it will cause delay.With  **gpu**, it will run real-time recognition very well.
+This code can be run directly use cpu, but it will cause delay. With  **gpu**, it will run real-time recognition very well.
 
 ## trained model
+
+Add **pretrained_model/sports1m_finetuning_ucf101.model** from the link below.
 
 Dropbox:[c3d_pretrained_model](https://www.dropbox.com/sh/8wcjrcadx4r31ux/AAAkz3dQ706pPO8ZavrztRCca?dl=0)
 
