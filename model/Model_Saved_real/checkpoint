@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/seogeurim/Desktop/FallDownDetection_Tobigs/Model1/Model_Saved_real/0_Model.ckpt"
+all_model_checkpoint_paths: "/Users/seogeurim/Desktop/FallDownDetection_Tobigs/Model1/Model_Saved_real/0_Model.ckpt"
