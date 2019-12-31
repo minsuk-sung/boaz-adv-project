@@ -1,3 +1,5 @@
+![](./img/BOAZ_Logo_NoBG.png)
+
 # BOAZ 12기 ADV Project
 
 본 프로젝트는 빅데이터 연합동아리 BOAZ 12기 Advanced 프로젝트를 정리해둔 레포지토리입니다.
@@ -49,7 +51,15 @@
 ---
 
 ## REFERENCE
--
+- http://blog.naver.com/PostView.nhn?blogId=laonple&logNo=221259295035
+- https://www.tensorflow.org/lite/convert/quantization
+- http://academictorrents.com/details/38d9ed996a5a75a039b84cf8a137be794e7cee89
+- https://www.samsungsemiconstory.com/2184
+- https://medium.com/@ghalfacree/benchmarking-the-raspberry-pi-4-73e5afbcd54b
+- https://www.pyimagesearch.com/2019/05/20/transfer-learning-with-keras-and-deep-learning/
+- https://www.pyimagesearch.com/2019/06/03/fine-tuning-with-keras-and-deep-learning/
+- https://www.pyimagesearch.com/tag/transfer-learning/
+
 
 ---
 
