@@ -2,8 +2,6 @@
 classification/data
 classification/model
 *.avi
-*.png
-*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
