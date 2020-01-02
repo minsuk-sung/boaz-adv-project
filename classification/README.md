@@ -54,6 +54,10 @@ python predict_video.py --model model/violence_resnet50.h5 \
                         --size 64
 ```
 
+## EXAMPLE
+[![Video Label](http://img.youtube.com/vi/MV_4RITXXL4/0.jpg)](https://youtu.be/MV_4RITXXL4?t=0s)
+
+
 ## REFERENCE
 - https://www.pyimagesearch.com/2019/07/15/video-classification-with-keras-and-deep-learning/
 - https://www.pyimagesearch.com/2019/05/20/transfer-learning-with-keras-and-deep-learning/
