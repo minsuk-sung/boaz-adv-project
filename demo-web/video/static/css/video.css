@@ -11,3 +11,13 @@
   width: 80%;
   margin-top: 1%;
 }
+
+.player {
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+}
+
+.player video:focus {
+  outline: none;
+}

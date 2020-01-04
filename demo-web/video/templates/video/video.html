@@ -6,8 +6,18 @@
   <h1>Upload Test Video here.</h1>
 
   <div class="form custom-file">
-    <input type="file" class="custom-file-input" id="customFile" />
-    <label class="custom-file-label" for="customFile">Choose file</label>
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %} {{ form.as_p }}
+      <input type="file" class="custom-file-input" id="customFile" />
+      <label class="custom-file-label" for="customFile">Choose file</label>
+    </form>
+  </div>
+
+  <div class="player">
+    <video width="80%" autoplay controls>
+      <source src="/media/Riot.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
   </div>
 </div>
 {% endblock %}
