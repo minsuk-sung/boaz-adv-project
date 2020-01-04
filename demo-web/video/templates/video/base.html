@@ -1,3 +1,5 @@
+{% include 'video/nav.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,13 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Fight Detection Demo</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
   <body>
-    <h1>Upload Test Video !</h1>
+    {% block nav %} {% endblock %}
 
-    <div>
-      {% block content %} {% endblock %}
+    <div class="header">
+      <h1>About Our Project</h1>
+      <p>Our Project is ...</p>
+    </div>
+
+    <div class="demo_section">
+      <div class="upload">
+        {% block content %} {% endblock %}
+      </div>
+
+      <div class="result">
+        <!-- Result Area -->
+      </div>
     </div>
   </body>
 </html>
