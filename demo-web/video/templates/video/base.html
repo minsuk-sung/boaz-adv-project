@@ -21,19 +21,31 @@
     <link rel="stylesheet" href="{% static 'css/video.css' %}" />
   </head>
   <body>
-    {% block nav %} {% endblock %}
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="/">FIGHT DETECTION Web Demo</a>
+      <span class="navbar-text">
+        BOAZ 12기 Project
+      </span>
+    </nav>
 
     <div class="header">
       <h1>About Our Project</h1>
       <p>Our Project is ...</p>
     </div>
 
+    <!-- example -->
+    <div class="example"></div>
+
+    <!-- real time -->
+    <div class="real_time"></div>
+
+    <!-- result : input/output -->
     <div class="demo_section">
-      <div class="upload">
+      <div class="input">
         {% block content %} {% endblock %}
       </div>
 
-      <div class="result">
+      <div class="output">
         RESULT
         <!-- Result Area -->
       </div>
