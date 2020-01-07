@@ -1,4 +1,6 @@
-## VIOLENCE ACTION DETECTION
+# VIOLENCE ACTION DETECTION
+
+학습시킨 모델은 구글 드라이브 detection_model$epoch_24.pth로 올려둠
 
 ----
 
