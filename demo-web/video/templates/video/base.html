@@ -25,13 +25,13 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/example1" target="_blank">Example1</a>
+            <a class="nav-link" href="/" target="_blank">Example1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/example2" target="_blank">Example2</a>
+            <a class="nav-link" href="/" target="_blank">Example2</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/example3" target="_blank">Example3</a>
+            <a class="nav-link" href="/" target="_blank">Example3</a>
           </li>
         </ul>
         <span class="navbar-text">
@@ -40,50 +40,30 @@
       </div>
     </nav>
 
-    <!-- <div class="header">
-      <h1>About Our Project</h1>
-      <p>Our Project is ...</p>
-    </div> -->
+    <div class="user_section">
+      <!-- 비디오 중앙정렬 하기 위해서 안 보이는 object 하나 넣은거 -->
+      <input
+        class="btn btn-primary btn-lg submit"
+        id="x"
+        type="submit"
+        value="Submit"
+      />
 
-    <!-- real time -->
-    <div class="real_time">
-      <div class="webcam">
-        <video id="myVideo" width="400" height="250" autoplay="autoplay" />
+      <!-- real time -->
+      <div class="real_time">
+        <div class="webcam">
+          <video id="myVideo" width="400" height="250" autoplay="autoplay" />
+        </div>
+
+        <!-- Save Button -->
+        {% include './save.html' %}
       </div>
 
-      <div class="save">
-        <button type="button" class="btn btn-outline-danger">
-          <svg
-            class="bi bi-camera-video-fill"
-            width="2em"
-            height="2em"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.667 5h6.666C12.253 5 13 5.746 13 6.667v6.666c0 .92-.746 1.667-1.667 1.667H4.667C3.747 15 3 14.254 3 13.333V6.667C3 5.747 3.746 5 4.667 5z"
-            />
-            <path
-              d="M9.404 10.697l6.363 3.692c.54.313 1.233-.066 1.233-.697V6.308c0-.63-.692-1.01-1.233-.696L9.404 9.304a.802.802 0 000 1.393z"
-            />
-          </svg>
-        </button>
-        <button type="button" class="btn btn-outline-dark">
-          <svg
-            class="bi bi-stop-fill"
-            width="2em"
-            height="2em"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M7 5.5h6A1.5 1.5 0 0114.5 7v6a1.5 1.5 0 01-1.5 1.5H7A1.5 1.5 0 015.5 13V7A1.5 1.5 0 017 5.5z"
-            />
-          </svg>
-        </button>
-      </div>
+      <input
+        class="btn btn-primary btn-lg submit"
+        type="submit"
+        value="Submit"
+      />
     </div>
 
     <!-- result : input/output -->
@@ -111,7 +91,7 @@
       </div>
     </div>
 
-    <script>
+    <!-- <script>
       function load() {
         var video = document.getElementById("myVideo");
         if (navigator.webkitGetUserMedia) {
@@ -129,6 +109,6 @@
           alert("webkitGetUserMedia is not supported");
         }
       }
-    </script>
+    </script> -->
   </body>
 </html>

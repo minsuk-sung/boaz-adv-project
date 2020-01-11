@@ -15,20 +15,27 @@ body {
   box-shadow: none;
 }
 
-.header {
-  background-color: #f6f6f6;
-  height: 20%;
-  margin: 1%;
-  padding: 1%;
-  text-align: center;
+.user_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.header h1 {
-  font-size: 2rem;
+#x {
+  visibility: hidden;
 }
 
 .real_time {
   text-align: center;
+}
+
+/* #myVideo {
+  border: 1px solid black;
+} */
+
+.submit {
+  margin-left: 2%;
+  padding: 1%;
 }
 
 .demo_section {
@@ -48,7 +55,22 @@ body {
 }
 
 .output {
-  border: 1px solid black;
+  border: 1px solid #bdbdbd;
   width: 100%;
   padding: 1%;
+}
+
+.input h1,
+.output h1 {
+  font-size: 1.5rem;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+}
+
+.player video:focus {
+  outline: none;
 }
