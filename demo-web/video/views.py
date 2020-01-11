@@ -4,4 +4,4 @@ from .forms import UploadFileForm
 
 
 def base(request):
-    return render(request, 'video/video.html', {})
+    return render(request, 'video/base.html', {})
