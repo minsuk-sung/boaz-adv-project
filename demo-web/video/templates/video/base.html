@@ -17,72 +17,118 @@
     />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/video.css' %}" />
-
-
-
-    <script>
-      function load() {
-        var video = document.getElementById('myVideo');
-        if (navigator.webkitGetUserMedia) {
-					navigator.webkitGetUserMedia({audio:true, video:true},
-          function(stream) {
-						video.srcObject=stream;
-						video.play();
-					},
-          function(error) {
-            alert('ERROR: ' + error.toString());
-          });
-        } else {
-          alert('webkitGetUserMedia is not supported');
-        }
-      }
-    </script>
-
-
   </head>
 
   <body onload="load()">
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">FIGHT DETECTION Web Demo</a>
-      <span class="navbar-text">
-        BOAZ 12기 Project
-      </span>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/example1" target="_blank">Example1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/example2" target="_blank">Example2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/example3" target="_blank">Example3</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          BOAZ 12기 Project
+        </span>
+      </div>
     </nav>
 
-    <div class="header">
+    <!-- <div class="header">
       <h1>About Our Project</h1>
       <p>Our Project is ...</p>
-    </div>
-
-    <!-- example -->
-    <div class="example"></div>
-
-
+    </div> -->
 
     <!-- real time -->
     <div class="real_time">
-      <video id="myVideo" width="400" height="300" autoplay="autoplay" />
-    </div><br>
+      <div class="webcam">
+        <video id="myVideo" width="400" height="250" autoplay="autoplay" />
+      </div>
 
-    <div class="save">
-      <input type="button" value="녹화 시작">
-      <input type="button" value="정지">
+      <div class="save">
+        <button type="button" class="btn btn-outline-danger">
+          <svg
+            class="bi bi-camera-video-fill"
+            width="2em"
+            height="2em"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.667 5h6.666C12.253 5 13 5.746 13 6.667v6.666c0 .92-.746 1.667-1.667 1.667H4.667C3.747 15 3 14.254 3 13.333V6.667C3 5.747 3.746 5 4.667 5z"
+            />
+            <path
+              d="M9.404 10.697l6.363 3.692c.54.313 1.233-.066 1.233-.697V6.308c0-.63-.692-1.01-1.233-.696L9.404 9.304a.802.802 0 000 1.393z"
+            />
+          </svg>
+        </button>
+        <button type="button" class="btn btn-outline-dark">
+          <svg
+            class="bi bi-stop-fill"
+            width="2em"
+            height="2em"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 5.5h6A1.5 1.5 0 0114.5 7v6a1.5 1.5 0 01-1.5 1.5H7A1.5 1.5 0 015.5 13V7A1.5 1.5 0 017 5.5z"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
-    <hr><br><br><br>
 
     <!-- result : input/output -->
     <div class="demo_section">
       <div class="input">
-        {% block content %} {% endblock %}
+        <h1>Input Video</h1>
+
+        <div class="player">
+          <video width="80%" autoplay controls>
+            <source src="/media/Riot.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
 
       <div class="output">
-        RESULT
-        <!-- Result Area -->
+        <h1>Output Video</h1>
+
+        <div class="player">
+          <video width="80%" autoplay controls>
+            <source src="/media/Riot.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </div>
 
-
-
+    <script>
+      function load() {
+        var video = document.getElementById("myVideo");
+        if (navigator.webkitGetUserMedia) {
+          navigator.webkitGetUserMedia(
+            { audio: true, video: true },
+            function(stream) {
+              video.srcObject = stream;
+              video.play();
+            },
+            function(error) {
+              alert("ERROR: " + error.toString());
+            }
+          );
+        } else {
+          alert("webkitGetUserMedia is not supported");
+        }
+      }
+    </script>
   </body>
 </html>
