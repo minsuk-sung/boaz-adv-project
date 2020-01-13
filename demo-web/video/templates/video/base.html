@@ -1,5 +1,3 @@
-{% include 'video/nav.html' %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,8 +17,31 @@
     />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/video.css' %}" />
+
+
+
+    <script>
+      function load() {
+        var video = document.getElementById('myVideo');
+        if (navigator.webkitGetUserMedia) {
+					navigator.webkitGetUserMedia({audio:true, video:true},
+          function(stream) {
+						video.srcObject=stream;
+						video.play();
+					},
+          function(error) {
+            alert('ERROR: ' + error.toString());
+          });
+        } else {
+          alert('webkitGetUserMedia is not supported');
+        }
+      }
+    </script>
+
+
   </head>
-  <body>
+
+  <body onload="load()">
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="/">FIGHT DETECTION Web Demo</a>
       <span class="navbar-text">
@@ -36,8 +57,18 @@
     <!-- example -->
     <div class="example"></div>
 
+
+
     <!-- real time -->
-    <div class="real_time"></div>
+    <div class="real_time">
+      <video id="myVideo" width="400" height="300" autoplay="autoplay" />
+    </div><br>
+
+    <div class="save">
+      <input type="button" value="녹화 시작">
+      <input type="button" value="정지">
+    </div>
+    <hr><br><br><br>
 
     <!-- result : input/output -->
     <div class="demo_section">
@@ -50,5 +81,8 @@
         <!-- Result Area -->
       </div>
     </div>
+
+
+
   </body>
 </html>
