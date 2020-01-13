@@ -16,73 +16,98 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/video.css' %}" />
-
-
-
-    <script>
-      function load() {
-        var video = document.getElementById('myVideo');
-        if (navigator.webkitGetUserMedia) {
-					navigator.webkitGetUserMedia({audio:true, video:true},
-          function(stream) {
-						video.srcObject=stream;
-						video.play();
-					},
-          function(error) {
-            alert('ERROR: ' + error.toString());
-          });
-        } else {
-          alert('webkitGetUserMedia is not supported');
-        }
-      }
-    </script>
-
-
   </head>
 
   <body onload="load()">
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">FIGHT DETECTION Web Demo</a>
-      <span class="navbar-text">
-        BOAZ 12기 Project
-      </span>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/" target="_blank">Example1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/" target="_blank">Example2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/" target="_blank">Example3</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          BOAZ 12기 Project
+        </span>
+      </div>
     </nav>
 
-    <div class="header">
-      <h1>About Our Project</h1>
-      <p>Our Project is ...</p>
+    <div class="user_section">
+      <!-- 비디오 중앙정렬 하기 위해서 안 보이는 object 하나 넣은거 -->
+      <input
+        class="btn btn-primary btn-lg submit"
+        id="x"
+        type="submit"
+        value="Submit"
+      />
+
+      <!-- real time -->
+      <div class="real_time">
+        <div class="webcam">
+          <video id="myVideo" width="400" height="250" autoplay="autoplay" />
+        </div>
+
+        <!-- Save Button -->
+        {% include './save.html' %}
+      </div>
+
+      <input
+        class="btn btn-primary btn-lg submit"
+        type="submit"
+        value="Submit"
+      />
     </div>
-
-    <!-- example -->
-    <div class="example"></div>
-
-
-
-    <!-- real time -->
-    <div class="real_time">
-      <video id="myVideo" width="400" height="300" autoplay="autoplay" />
-    </div><br>
-
-    <div class="save">
-      <input type="button" value="녹화 시작">
-      <input type="button" value="정지">
-    </div>
-    <hr><br><br><br>
 
     <!-- result : input/output -->
     <div class="demo_section">
       <div class="input">
-        {% block content %} {% endblock %}
+        <h1>Input Video</h1>
+
+        <div class="player">
+          <video width="80%" autoplay controls>
+            <source src="/media/Riot.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
 
       <div class="output">
-        RESULT
-        <!-- Result Area -->
+        <h1>Output Video</h1>
+
+        <div class="player">
+          <video width="80%" autoplay controls>
+            <source src="/media/Riot.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </div>
 
-
-
+    <script>
+      function load() {
+        var video = document.getElementById("myVideo");
+        if (navigator.webkitGetUserMedia) {
+          navigator.webkitGetUserMedia(
+            { audio: true, video: true },
+            function(stream) {
+              video.srcObject = stream;
+              video.play();
+            },
+            function(error) {
+              alert("ERROR: " + error.toString());
+            }
+          );
+        } else {
+          alert("webkitGetUserMedia is not supported");
+        }
+      }
+    </script>
   </body>
 </html>
