@@ -10,5 +10,4 @@ def base(request):
 
 def predict(request):
     VideoConfig.predictor.predict()
-
     return render(request, 'video/base.html', {})

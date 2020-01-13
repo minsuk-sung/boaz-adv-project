@@ -14,5 +14,5 @@ class VideoConfig(AppConfig):
     INPUT_PATH = os.path.normpath(Path(BASE, '../media/street-fight.mp4'))
     OUTPUT_PATH = os.path.normpath(Path(BASE, '../media/output/'))
 
-    predictor = ViolencePredictor(model_path=MODEL_PATH, label_path=LABEL_PATH,
-                                  input_path=INPUT_PATH, output_path=OUTPUT_PATH, size=64)
+    # predictor = ViolencePredictor(model_path=MODEL_PATH, label_path=LABEL_PATH,
+    #                               input_path=INPUT_PATH, output_path=OUTPUT_PATH, size=64)
