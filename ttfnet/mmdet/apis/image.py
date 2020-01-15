@@ -196,9 +196,9 @@ def imshow_det_bboxes(img,
         if object_bbox is not None:
             object_bboxes.append(object_bbox)
             
-   # if show:
-   #     imshow(img, win_name, wait_time)
-   # if out_file is not None:
+#    if show:
+ #       imshow(img, win_name, wait_time)
+  #  if out_file is not None:
    #     imwrite(img, out_file)
 
     return (person_bboxes, object_bboxes, img)

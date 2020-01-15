@@ -10,7 +10,25 @@
 # python predict_video.py --model model/violence_mobile.model --label-bin model/lb.pickle --input example_clips/lifting.mp4 --output output/lifting_128avg.avi --size 64
 # python predict_video.py --model model/violence_mobile.model --label-bin model/lb.pickle --input camera --output real_time.avi --size 64
 
+
 # import the necessary packages
+import tensorflow as tf
+import keras.backend.tensorflow_backend as KTF
+import os
+
+def get_session(gpu_fraction=0.7):
+    '''Assume that you have 6GB of GPU memory and want to allocate ~2GB'''
+
+    num_threads = os.environ.get('OMP_NUM_THREADS')
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=gpu_fraction)
+
+    if num_threads:
+        return tf.Session(config=tf.ConfigProto(
+            gpu_options=gpu_options, intra_op_parallelism_threads=num_threads))
+    else:
+        return tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+
+KTF.set_session(get_session())
 from keras.models import load_model
 from collections import deque
 import matplotlib.pyplot as plt
@@ -18,6 +36,8 @@ import numpy as np
 import argparse
 import pickle
 import cv2
+import time
+
 
 # ttfnet
 from mmdet.apis import init_detector, inference_detector, show_result
@@ -28,15 +48,15 @@ import mmcv
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-m", "--model", required=True, default='model/violence.model',
+ap.add_argument("-m", "--model", required=False, default='./model/violence_resnet.model',
 	help="path to trained serialized model")
-ap.add_argument("-l", "--label-bin", required=True, default='model/lb.pickle',
+ap.add_argument("-l", "--label-bin", required=False, default='./model/lb.pickle',
 	help="path to  label binarizer")
-ap.add_argument("-i", "--input", required=True, default='example_clips/lifting.mp4',
+ap.add_argument("-i", "--input", required=False, default='./video/news.mp4',
 	help="path to our input video")
-ap.add_argument("-o", "--output", required=True, default='output/lifting_128avg.avi',
+ap.add_argument("-o", "--output", required=False, default='./output/test.avi',
 	help="path to our output video")
-ap.add_argument("-s", "--size", type=int, default=128,
+ap.add_argument("-s", "--size", type=int, default=60,
 	help="size of queue for averaging")
 args = vars(ap.parse_args())
 
@@ -47,8 +67,8 @@ lb = pickle.loads(open(args["label_bin"], "rb").read())
 
 
 # ttfnet
-config_file='/home/rladkdud31/k-lab-project2/ttfnet/configs/ttfnet/ttfnet_d53_2x.py'
-checkpoint_file = '/home/rladkdud31/k-lab-project2/ttfnet/work_dirs/ttfnet53_2x/epoch_24.pth'
+config_file='/home/tjgh131/boaz-adv-project/ttfnet/configs/ttfnet/ttfnet_d53_2x.py'
+checkpoint_file = '/home/tjgh131/boaz-adv-project/detection/ttfnet/model/epoch_24.pth'
 
 model_detect = init_detector(config_file, checkpoint_file, device='cuda:0')
 
@@ -69,15 +89,18 @@ writer = None
 # loop over frames from the video file stream
 while True:
 	# read the next frame from the file
+    fps_time = time.time()
     (grabbed, frame) = vs.read()
+    
+    if not grabbed:
+        break
 
         #ttfnet
     result_detect = inference_detector(model_detect, frame)
 
 	# if the frame was not grabbed, then we have reached the end
 	# of the stream
-    if not grabbed:
-        break
+
 
 	# if the frame dimensions are empty, grab them
     if W is None or H is None:
@@ -139,10 +162,9 @@ while True:
         fourcc = cv2.VideoWriter_fourcc(*"MJPG")
         writer = cv2.VideoWriter(args["output"], fourcc, 30,(W, H), True)
 
-	# write the output frame to disk
-    writer.write(output)
-
 	# show the output image
+    cv2.putText(output, "FPS: %f" % (1.0 / (time.time() - fps_time)), (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+    writer.write(output)
     cv2.imshow("Output", output)
     key = cv2.waitKey(1) & 0xFF
 

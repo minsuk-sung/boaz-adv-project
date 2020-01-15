@@ -1,8 +1,8 @@
 from mmdet.apis import init_detector, inference_detector, show_result
 import mmcv
 
-config_file = '/home/rladkdud31/k-lab-project2/ttfnet/configs/ttfnet/ttfnet_d53_2x.py'
-checkpoint_file = '/home/rladkdud31/k-lab-project2/ttfnet/work_dirs/ttfnet53_2x/epoch_24.pth'
+config_file = '/home/tjgh131/boaz-adv-project/ttfnet/configs/ttfnet/ttfnet_d53_2x.py'
+checkpoint_file = '/home/tjgh131/boaz-adv-project/detection/ttfnet/model/epoch_24.pth'
 
 def main(config_file, checkpoint_file):
     # build the model from a config file and a checkpoint file
