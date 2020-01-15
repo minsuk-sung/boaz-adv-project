@@ -24,13 +24,13 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/" target="_blank">Example1</a>
+            <a class="nav-link" href="/example/1" target="_blank">Example1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/" target="_blank">Example2</a>
+            <a class="nav-link" href="/example/2" target="_blank">Example2</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/" target="_blank">Example3</a>
+            <a class="nav-link" href="/example/3" target="_blank">Example3</a>
           </li>
         </ul>
         <span class="navbar-text">
@@ -70,23 +70,33 @@
       <div class="input">
         <h1>Input Video</h1>
 
+        {% if path %}
         <div class="player">
-          <video width="80%" autoplay controls>
-            <source src="/media/Riot.mp4" type="video/mp4" />
+          <video width="80%" height="300" autoplay controls>
+            <source src="/media/input/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
+
+        {% else %}
+        <div>Enter Input Video.</div>
+        {% endif %}
       </div>
 
       <div class="output">
         <h1>Output Video</h1>
 
+        {% if path %}
         <div class="player">
-          <video width="80%" autoplay controls>
-            <source src="/media/Riot.mp4" type="video/mp4" />
+          <video width="80%" height="300" autoplay controls>
+            <source src="/media/output/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
+
+        {% else %}
+        <div>Wait....</div>
+        {% endif %}
       </div>
     </div>
 
