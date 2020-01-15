@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
 
-  <body onload="load()">
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">FIGHT DETECTION Web Demo</a>
       <div class="collapse navbar-collapse" id="navbarText">
@@ -51,7 +51,7 @@
       <!-- real time -->
       <div class="real_time">
         <div class="webcam">
-          <video id="myVideo" width="400" height="250" autoplay="autoplay" />
+          <video controls autoplay></video><br>
         </div>
 
         <!-- Save Button -->
@@ -100,24 +100,103 @@
       </div>
     </div>
 
-    <script>
-      function load() {
-        var video = document.getElementById("myVideo");
-        if (navigator.webkitGetUserMedia) {
-          navigator.webkitGetUserMedia(
-            { audio: true, video: true },
-            function(stream) {
-              video.srcObject = stream;
-              video.play();
-            },
-            function(error) {
-              alert("ERROR: " + error.toString());
-            }
-          );
-        } else {
-          alert("webkitGetUserMedia is not supported");
-        }
-      }
-    </script>
+<script>
+var constraints = {
+	audio:false,
+	video:{
+		width:400,
+		height:300,
+		framerate:30}
+	};
+
+var videoElement = document.querySelector('video');
+var recBtn = document.querySelector('button#rec');
+var stopBtn = document.querySelector('button#stop');
+var downloadLink = document.querySelector('a#downloadLink');
+videoElement.controls = true;
+
+var mediaRecorder;
+var chunks = [];
+var count = 0;
+var localStream = null;
+
+if (!navigator.mediaDevices.getUserMedia){
+	console.log('navigator.mediaDevices.getUserMedia not supported on your browser, use the latest version of Firefox or Chrome');
+} else {
+	if (window.MediaRecorder == undefined) {
+			console.log('MediaRecorder not supported on your browser, use the latest version of Firefox or Chrome');
+	} else{
+		navigator.mediaDevices.getUserMedia(constraints)
+			.then(function(stream) {
+				localStream = stream;
+				localStream.getTracks().forEach(function(track) {
+					if(track.kind == "video"){
+						track.onended = function(event){ }
+					}
+				});
+				videoElement.srcObject = localStream;
+				videoElement.play();
+			}).catch(function(err) {
+				console.log(err)
+			});
+	}
+}
+
+function onBtnRecordClicked () {
+	alert("녹화가 시작됩니다.")
+	console.log("Start Recording")
+
+	if (localStream == null) {
+		console.log('Could not get local stream from mic/camera');
+	} else {
+		if (typeof MediaRecorder.isTypeSupported == 'function'){
+			if (MediaRecorder.isTypeSupported('video/x-msvideo;codecs=vp9')) {
+			  var options = {mimeType: 'video/x-msvideo;codecs=vp9'};
+			} else if (MediaRecorder.isTypeSupported('video/x-msvideo;codecs=h264')) {
+			  var options = {mimeType: 'video/x-msvideo;codecs=h264'};
+			} else  if (MediaRecorder.isTypeSupported('video/x-msvideo;codecs=vp8')) {
+			  var options = {mimeType: 'video/x-msvideo;codecs=vp8'};
+			}
+			mediaRecorder = new MediaRecorder(localStream, options);
+		} else {
+			mediaRecorder = new MediaRecorder(localStream);
+		}
+		mediaRecorder.ondataavailable = function(e) {
+			chunks.push(e.data);
+		};
+
+		mediaRecorder.onstart = function(){
+			localStream.getTracks().forEach(function(track) { });
+		};
+
+		mediaRecorder.onstop = function(){
+			var blob = new Blob(chunks, {type: "video/x-msvideo"});
+			chunks = [];
+			var videoURL = window.URL.createObjectURL(blob);
+
+			downloadLink.href = videoURL; // 경로 지정!
+			videoElement.src = videoURL;
+
+			var rand =  Math.floor((Math.random() * 10000000));
+			var name  = "video_"+rand+".avi" ;
+			downloadLink.setAttribute( "download", name);
+			downloadLink.setAttribute( "name", name); // 다운로드 자동 실행!
+		};
+
+		mediaRecorder.start(100);
+		localStream.getTracks().forEach(function(track) {
+		})
+	}
+}
+
+function onBtnStopClicked(){
+	alert('녹화가 완료되었습니다. \n결과가 나오는 동안 잠시만 기다려주세요:-)')
+	console.log("Stop Recording")
+	mediaRecorder.stop();
+	videoElement.controls = true;
+}
+
+</script>
+
   </body>
 </html>
