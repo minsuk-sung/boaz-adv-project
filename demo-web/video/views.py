@@ -8,10 +8,5 @@ def base(request):
     return render(request, 'video/base.html', {})
 
 
-def predict(request):
-    VideoConfig.predictor.predict()
-    return render(request, 'video/base.html', {})
-
-
 def getExampleVideo(request, exNum):
     return render(request, 'video/base.html', {'path': 'example{}'.format(exNum)})
