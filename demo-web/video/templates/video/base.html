@@ -72,14 +72,14 @@
 
         {% if path %}
         <div class="player">
-          <video width="80%" height="300" autoplay controls>
+          <video height="80%" autoplay controls>
             <source src="/media/input/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
 
         {% else %}
-        <div>Enter Input Video.</div>
+        <div class="describe"><span>Enter Input Video.</span></div>
         {% endif %}
       </div>
 
@@ -88,14 +88,14 @@
 
         {% if path %}
         <div class="player">
-          <video width="80%" height="300" autoplay controls>
+          <video height="80%" autoplay controls>
             <source src="/media/output/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
 
         {% else %}
-        <div>Wait....</div>
+        <div class="describe"><span>Wait....</span></div>
         {% endif %}
       </div>
     </div>
