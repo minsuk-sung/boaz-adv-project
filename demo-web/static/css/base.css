@@ -1,0 +1,86 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
+  font-family: "Ubuntu", sans-serif;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.user_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#x {
+  visibility: hidden;
+}
+
+.real_time {
+  text-align: center;
+}
+
+/* #myVideo {
+  border: 1px solid black;
+} */
+
+.submit {
+  margin-left: 2%;
+  padding: 1%;
+}
+
+.demo_section {
+  width: 100%;
+  height: 50%;
+  padding: 0 1%;
+  margin: 1% 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  border: 1px solid #eaeaea;
+  width: 100%;
+  height: 100%;
+  margin-right: 1%;
+  padding: 1%;
+}
+
+.output {
+  border: 1px solid #bdbdbd;
+  width: 100%;
+  height: 100%;
+  padding: 1%;
+}
+
+.input h1,
+.output h1 {
+  font-size: 1.5rem;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+  height: 100%;
+}
+
+.player video:focus {
+  outline: none;
+}
+
+.describe {
+  margin-top: 20%;
+  text-align: center;
+  font-size: 2rem;
+  color: lightgray;
+}
