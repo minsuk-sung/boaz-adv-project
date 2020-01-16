@@ -10,3 +10,7 @@ def base(request):
 
 def getExampleVideo(request, exNum):
     return render(request, 'video/base.html', {'path': 'example{}'.format(exNum)})
+
+
+def getOutputVideo(request, videoNo):
+    return render(request, 'video/base.html', {'path': 'video_{}'.format(videoNo)})

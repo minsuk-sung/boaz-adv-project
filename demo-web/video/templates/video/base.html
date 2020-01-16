@@ -51,17 +51,17 @@
       <!-- real time -->
       <div class="real_time">
         <div class="webcam">
-          <video controls autoplay></video><br>
+          <video width="70%" height="70%" controls autoplay></video><br>
         </div>
 
         <!-- Save Button -->
         {% include './save.html' %}
       </div>
-
       <input
         class="btn btn-primary btn-lg submit"
         type="submit"
         value="Submit"
+        onclick="location.href='/video_/7318638'"
       />
     </div>
 
@@ -73,7 +73,7 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source src="/media/input/{{path}}.mp4" type="video/mp4" />
+            <source src="/media/input/{{path}}.avi" type="video/x-msvideo" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -89,7 +89,7 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source src="/media/output/{{path}}.mp4" type="video/mp4" />
+            <source src="/media/output/{{path}}.avi" type="video/x-msvideo" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -150,12 +150,12 @@ function onBtnRecordClicked () {
 		console.log('Could not get local stream from mic/camera');
 	} else {
 		if (typeof MediaRecorder.isTypeSupported == 'function'){
-			if (MediaRecorder.isTypeSupported('video/x-msvideo;codecs=vp9')) {
-			  var options = {mimeType: 'video/x-msvideo;codecs=vp9'};
-			} else if (MediaRecorder.isTypeSupported('video/x-msvideo;codecs=h264')) {
-			  var options = {mimeType: 'video/x-msvideo;codecs=h264'};
-			} else  if (MediaRecorder.isTypeSupported('video/x-msvideo;codecs=vp8')) {
-			  var options = {mimeType: 'video/x-msvideo;codecs=vp8'};
+			if (MediaRecorder.isTypeSupported('video/x-msvideo; codecs=vp9')) {
+			  var options = {mimeType: 'video/x-msvideo; codecs=vp9'};
+			} else if (MediaRecorder.isTypeSupported('video/x-msvideo; codecs=h264')) {
+			  var options = {mimeType: 'video/x-msvideo; codecs=h264'};
+			} else  if (MediaRecorder.isTypeSupported('video/x-msvideo; codecs=vp8')) {
+			  var options = {mimeType: 'video/x-msvideo; codecs=vp8'};
 			}
 			mediaRecorder = new MediaRecorder(localStream, options);
 		} else {
