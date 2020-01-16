@@ -61,7 +61,7 @@
         class="btn btn-primary btn-lg submit"
         type="submit"
         value="Submit"
-        onclick="location.href='/video_/7318638'"
+        onclick="onSubmitClicked()"
       />
     </div>
 
@@ -73,7 +73,7 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source src="/media/input/{{path}}.avi" type="video/x-msvideo" />
+            <source src="/media/input/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -89,7 +89,7 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source src="/media/output/{{path}}.avi" type="video/x-msvideo" />
+            <source src="/media/output/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -150,12 +150,12 @@ function onBtnRecordClicked () {
 		console.log('Could not get local stream from mic/camera');
 	} else {
 		if (typeof MediaRecorder.isTypeSupported == 'function'){
-			if (MediaRecorder.isTypeSupported('video/x-msvideo; codecs=vp9')) {
-			  var options = {mimeType: 'video/x-msvideo; codecs=vp9'};
-			} else if (MediaRecorder.isTypeSupported('video/x-msvideo; codecs=h264')) {
-			  var options = {mimeType: 'video/x-msvideo; codecs=h264'};
-			} else  if (MediaRecorder.isTypeSupported('video/x-msvideo; codecs=vp8')) {
-			  var options = {mimeType: 'video/x-msvideo; codecs=vp8'};
+			if (MediaRecorder.isTypeSupported('video/mpeg; codecs=vp9')) {
+			  var options = {mimeType: 'video/mpeg; codecs=vp9'};
+			} else if (MediaRecorder.isTypeSupported('video/mpeg; codecs=h264')) {
+			  var options = {mimeType: 'video/mpeg; codecs=h264'};
+			} else  if (MediaRecorder.isTypeSupported('video/mpeg; codecs=vp8')) {
+			  var options = {mimeType: 'video/mpeg; codecs=vp8'};
 			}
 			mediaRecorder = new MediaRecorder(localStream, options);
 		} else {
@@ -170,7 +170,7 @@ function onBtnRecordClicked () {
 		};
 
 		mediaRecorder.onstop = function(){
-			var blob = new Blob(chunks, {type: "video/x-msvideo"});
+			var blob = new Blob(chunks, {type: "video/mpeg"});
 			chunks = [];
 			var videoURL = window.URL.createObjectURL(blob);
 
@@ -178,7 +178,7 @@ function onBtnRecordClicked () {
 			videoElement.src = videoURL;
 
 			var rand =  Math.floor((Math.random() * 10000000));
-			var name  = "video_"+rand+".avi" ;
+			var name  = "video_"+rand+".mp4" ;
 			downloadLink.setAttribute( "download", name);
 			downloadLink.setAttribute( "name", name); // 다운로드 자동 실행!
 		};
@@ -190,10 +190,15 @@ function onBtnRecordClicked () {
 }
 
 function onBtnStopClicked(){
-	alert('녹화가 완료되었습니다. \n결과가 나오는 동안 잠시만 기다려주세요:-)')
+	alert('녹화가 완료되었습니다.')
 	console.log("Stop Recording")
 	mediaRecorder.stop();
 	videoElement.controls = true;
+}
+
+function onSubmitClicked() {
+  alert('모델을 학습합니다. \n결과가 나오는 동안 잠시만 기다려주세요:-)')
+  location.href='/video_/1234'
 }
 
 </script>
