@@ -19,24 +19,11 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="/">FIGHT DETECTION Web Demo</a>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/example/1" target="_blank">Example1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/example/2" target="_blank">Example2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/example/3" target="_blank">Example3</a>
-          </li>
-        </ul>
-        <span class="navbar-text">
-          BOAZ 12기 Project
-        </span>
-      </div>
+      <span class="navbar-text">
+        BOAZ 12기 Project
+      </span>
     </nav>
 
     <div class="user_section">
@@ -51,18 +38,42 @@
       <!-- real time -->
       <div class="real_time">
         <div class="webcam">
-          <video width="70%" height="70%" controls autoplay></video><br>
+          <video width="90%" height="80%" controls autoplay></video><br />
         </div>
 
         <!-- Save Button -->
         {% include './save.html' %}
       </div>
       <input
-        class="btn btn-primary btn-lg submit"
+        class="btn btn-warning btn-lg submit"
         type="submit"
         value="Submit"
         onclick="onSubmitClicked()"
       />
+    </div>
+
+    <div class="example_section">
+      <a
+        href="/example/1"
+        class="btn btn-danger"
+        role="button"
+        aria-pressed="true"
+        >Example1</a
+      >
+      <a
+        href="/example/2"
+        class="btn btn-success"
+        role="button"
+        aria-pressed="true"
+        >Example2</a
+      >
+      <a
+        href="/example/3"
+        class="btn btn-primary"
+        role="button"
+        aria-pressed="true"
+        >Example3</a
+      >
     </div>
 
     <!-- result : input/output -->
@@ -73,7 +84,11 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source id="inputVideo" src="/media/input/{{path}}.mp4" type="video/mp4" />
+            <source
+              id="inputVideo"
+              src="/media/input/{{path}}.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -89,124 +104,138 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source id="outputVideo" src="/media/output/{{path}}.mp4" type="video/mp4" />
+            <source
+              id="outputVideo"
+              src="/media/output/{{path}}.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         </div>
 
         {% else %}
-        <div class="describe"><span>Wait....</span></div>
+        <div class="describe"><span>Enter Submit Button.</span></div>
         {% endif %}
       </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script>
-var constraints = {
-	audio:false,
-	video:{
-		width:640,
-		height:480,
-		framerate:30}
-	};
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+      var constraints = {
+        audio: false,
+        video: {
+          width: 640,
+          height: 480,
+          framerate: 30
+        }
+      };
 
-var videoElement = document.querySelector('video');
-var recBtn = document.querySelector('button#rec');
-var stopBtn = document.querySelector('button#stop');
-var downloadLink = document.querySelector('a#downloadLink');
-videoElement.controls = true;
+      var videoElement = document.querySelector("video");
+      var recBtn = document.querySelector("button#rec");
+      var stopBtn = document.querySelector("button#stop");
+      var downloadLink = document.querySelector("a#downloadLink");
+      videoElement.controls = true;
 
-var mediaRecorder;
-var chunks = [];
-var count = 0;
-var localStream = null;
-var rand;
+      var mediaRecorder;
+      var chunks = [];
+      var count = 0;
+      var localStream = null;
+      var rand;
 
-if (!navigator.mediaDevices.getUserMedia){
-	console.log('navigator.mediaDevices.getUserMedia not supported on your browser, use the latest version of Firefox or Chrome');
-} else {
-	if (window.MediaRecorder == undefined) {
-			console.log('MediaRecorder not supported on your browser, use the latest version of Firefox or Chrome');
-	} else{
-		navigator.mediaDevices.getUserMedia(constraints)
-			.then(function(stream) {
-				localStream = stream;
-				localStream.getTracks().forEach(function(track) {
-					if(track.kind == "video"){
-						track.onended = function(event){ }
-					}
-				});
-				videoElement.srcObject = localStream;
-				videoElement.play();
-			}).catch(function(err) {
-				console.log(err)
-			});
-	}
-}
+      // if (!navigator.mediaDevices.getUserMedia) {
+      //   console.log(
+      //     "navigator.mediaDevices.getUserMedia not supported on your browser, use the latest version of Firefox or Chrome"
+      //   );
+      // } else {
+      //   if (window.MediaRecorder == undefined) {
+      //     console.log(
+      //       "MediaRecorder not supported on your browser, use the latest version of Firefox or Chrome"
+      //     );
+      //   } else {
+      //     navigator.mediaDevices
+      //       .getUserMedia(constraints)
+      //       .then(function(stream) {
+      //         localStream = stream;
+      //         localStream.getTracks().forEach(function(track) {
+      //           if (track.kind == "video") {
+      //             track.onended = function(event) {};
+      //           }
+      //         });
+      //         videoElement.srcObject = localStream;
+      //         videoElement.play();
+      //       })
+      //       .catch(function(err) {
+      //         console.log(err);
+      //       });
+      //   }
+      // }
 
-function onBtnRecordClicked () {
-	alert("녹화가 시작됩니다.")
-	console.log("Start Recording")
+      function onBtnRecordClicked() {
+        alert("녹화가 시작됩니다.");
+        console.log("Start Recording");
 
-	if (localStream == null) {
-		console.log('Could not get local stream from mic/camera');
-	} else {
-		if (typeof MediaRecorder.isTypeSupported == 'function'){
-			if (MediaRecorder.isTypeSupported('video/mpeg; codecs=vp9')) {
-			  var options = {mimeType: 'video/mpeg; codecs=vp9'};
-			} else if (MediaRecorder.isTypeSupported('video/mpeg; codecs=h264')) {
-			  var options = {mimeType: 'video/mpeg; codecs=h264'};
-			} else  if (MediaRecorder.isTypeSupported('video/mpeg; codecs=vp8')) {
-			  var options = {mimeType: 'video/mpeg; codecs=vp8'};
-			}
-			mediaRecorder = new MediaRecorder(localStream, options);
-		} else {
-			mediaRecorder = new MediaRecorder(localStream);
-		}
-		mediaRecorder.ondataavailable = function(e) {
-			chunks.push(e.data);
-		};
+        if (localStream == null) {
+          console.log("Could not get local stream from mic/camera");
+        } else {
+          if (typeof MediaRecorder.isTypeSupported == "function") {
+            if (MediaRecorder.isTypeSupported("video/mpeg; codecs=vp9")) {
+              var options = { mimeType: "video/mpeg; codecs=vp9" };
+            } else if (
+              MediaRecorder.isTypeSupported("video/mpeg; codecs=h264")
+            ) {
+              var options = { mimeType: "video/mpeg; codecs=h264" };
+            } else if (
+              MediaRecorder.isTypeSupported("video/mpeg; codecs=vp8")
+            ) {
+              var options = { mimeType: "video/mpeg; codecs=vp8" };
+            }
+            mediaRecorder = new MediaRecorder(localStream, options);
+          } else {
+            mediaRecorder = new MediaRecorder(localStream);
+          }
+          mediaRecorder.ondataavailable = function(e) {
+            chunks.push(e.data);
+          };
 
-		mediaRecorder.onstart = function(){
-			localStream.getTracks().forEach(function(track) { });
-		};
+          mediaRecorder.onstart = function() {
+            localStream.getTracks().forEach(function(track) {});
+          };
 
-		mediaRecorder.onstop = function(){
-			var blob = new Blob(chunks, {type: "video/mpeg"});
-			chunks = [];
-			var videoURL = window.URL.createObjectURL(blob);
+          mediaRecorder.onstop = function() {
+            var blob = new Blob(chunks, { type: "video/mpeg" });
+            chunks = [];
+            var videoURL = window.URL.createObjectURL(blob);
 
-			downloadLink.href = videoURL; // 경로 지정!
-			videoElement.src = videoURL;
+            downloadLink.href = videoURL; // 경로 지정!
+            videoElement.src = videoURL;
 
-			rand =  Math.floor((Math.random() * 100000));
-			var name  = "video_"+rand+".mp4" ;
-			downloadLink.setAttribute( "download", name);
-			downloadLink.setAttribute( "name", name); // 다운로드 자동 실행!
-		};
+            // rand = Math.floor(Math.random() * 100000);
+            rand = "1234";
+            var name = "video_" + rand + ".mp4";
+            downloadLink.setAttribute("download", name);
+            downloadLink.setAttribute("name", name); // 다운로드 자동 실행!
+          };
 
-		mediaRecorder.start(100);
-		localStream.getTracks().forEach(function(track) {
-		})
-	}
-}
+          mediaRecorder.start(100);
+          localStream.getTracks().forEach(function(track) {});
+        }
+      }
 
-function onBtnStopClicked(){
-	alert('녹화가 완료되었습니다.')
-	console.log("Stop Recording")
-	mediaRecorder.stop();
-	videoElement.controls = true;
-}
+      function onBtnStopClicked() {
+        alert("녹화가 완료되었습니다.");
+        console.log("Stop Recording");
+        mediaRecorder.stop();
+        videoElement.controls = true;
+      }
 
-function onSubmitClicked() {
-  alert('모델을 학습합니다. \n결과가 나오는 동안 잠시만 기다려주세요:-)')
-  console.log("video_"+rand+".mp4 파일을 학습합니다." )
-  location.href='/video_/'+rand;
-  $("#inputVideo").attr("src", "/media/input/video_"+rand+".mp4");
-  $("#outputVideo").attr("src", "/media/output/video_"+rand+".mp4");
-}
-
-</script>
-
+      function onSubmitClicked() {
+        alert("모델을 학습합니다. \n결과가 나오는 동안 잠시만 기다려주세요:-)");
+        rand = "1234";
+        console.log("video_" + rand + ".mp4 파일을 학습합니다.");
+        location.href = "/video_/" + rand;
+        $("#inputVideo").attr("src", "/media/input/video_" + rand + ".mp4");
+        $("#outputVideo").attr("src", "/media/output/video_" + rand + ".mp4");
+      }
+    </script>
   </body>
 </html>

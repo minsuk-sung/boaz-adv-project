@@ -19,6 +19,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 3%;
 }
 
 #x {
@@ -36,6 +37,15 @@ body {
 .submit {
   margin-left: 2%;
   padding: 1%;
+}
+
+.example_section {
+  margin: 2% auto;
+  text-align: center;
+}
+
+.example_section > a:nth-child(2) {
+  margin: 0 10px;
 }
 
 .demo_section {
