@@ -73,7 +73,7 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source src="/media/input/{{path}}.mp4" type="video/mp4" />
+            <source id="inputVideo" src="/media/input/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -89,7 +89,7 @@
         {% if path %}
         <div class="player">
           <video height="80%" autoplay controls>
-            <source src="/media/output/{{path}}.mp4" type="video/mp4" />
+            <source id="outputVideo" src="/media/output/{{path}}.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -100,6 +100,7 @@
       </div>
     </div>
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 var constraints = {
 	audio:false,
@@ -119,6 +120,7 @@ var mediaRecorder;
 var chunks = [];
 var count = 0;
 var localStream = null;
+var rand;
 
 if (!navigator.mediaDevices.getUserMedia){
 	console.log('navigator.mediaDevices.getUserMedia not supported on your browser, use the latest version of Firefox or Chrome');
@@ -177,7 +179,7 @@ function onBtnRecordClicked () {
 			downloadLink.href = videoURL; // 경로 지정!
 			videoElement.src = videoURL;
 
-			var rand =  Math.floor((Math.random() * 10000000));
+			rand =  Math.floor((Math.random() * 100000));
 			var name  = "video_"+rand+".mp4" ;
 			downloadLink.setAttribute( "download", name);
 			downloadLink.setAttribute( "name", name); // 다운로드 자동 실행!
@@ -198,7 +200,10 @@ function onBtnStopClicked(){
 
 function onSubmitClicked() {
   alert('모델을 학습합니다. \n결과가 나오는 동안 잠시만 기다려주세요:-)')
-  location.href='/video_/1234'
+  console.log("video_"+rand+".mp4 파일을 학습합니다." )
+  location.href='/video_/'+rand;
+  $("#inputVideo").attr("src", "/media/input/video_"+rand+".mp4");
+  $("#outputVideo").attr("src", "/media/output/video_"+rand+".mp4");
 }
 
 </script>
