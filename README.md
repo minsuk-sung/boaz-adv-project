@@ -41,7 +41,7 @@
 
 * Django 2.0.0
 
-![Jan-22-2020 23-44-37](https://user-images.githubusercontent.com/22045163/72903795-38194380-3d71-11ea-9505-06efe1ea844f.gif)
+![Jan-23-2020 00-13-18](https://user-images.githubusercontent.com/22045163/72906232-38b3d900-3d75-11ea-8116-069d090334a8.gif)
 
 ![Jan-22-2020 23-51-29](https://user-images.githubusercontent.com/22045163/72904385-284e2f00-3d72-11ea-8465-cd4e266b04ac.gif)
 
