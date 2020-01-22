@@ -14,7 +14,7 @@
 
 
 
-## Required
+## Usage
 
 * Django 2.0.0
   * python manage.py migrate
