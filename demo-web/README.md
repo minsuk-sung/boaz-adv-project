@@ -12,3 +12,10 @@
 - download 폴더에 생성된 .mp4 파일을 input 폴더로 이동시킨다.
 - Submit 버튼을 눌러 학습된 영상을 확인한다.
 
+
+
+## Required
+
+* Django 2.0.0
+  * python manage.py migrate
+  * python manage.py runserver

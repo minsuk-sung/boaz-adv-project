@@ -15,7 +15,6 @@
  최근 강력범죄의 발생비는 증가하는 추세를 보이며 심각한 사회문제의 화두로 부상하고 있다. 이러한 문제를 해결하고자 정부는 지난 수년간 공공기관 CCTV를 및 통합관제센터의 수를 늘려가고 있다. 공공기관 CCTV는 2018년 기준 1,032,879대로 매년 증가하는 추세를 보인다. 이 중 약 50% 육박하는 CCTV의 수가 범죄 예방 목적으로 설치되어 있지만, 전체 CCTV를 모두 모니터링하는 것은 불가능하다. 특히 CCTV를 통한 사건, 사고의 초기 인지 및 대응이 중요하지만 현재 CCTV는 범죄 예방 방지가 아닌 사후 증거자료나 사건현장 복원의 용도로만 활용되고 있다. 
  본 논문에서는 이러한 문제를 해결하기위해 Embedded Device를 이용한 새로운 Real Time Violence Detection 방안을 제시한다. `RELATED WORK`에서는 과거 감시카메라 활용과 이에 대한 한계점을 지적한다. `PROPOSED SYSTEM`에서는 폭력적인 상황을 판단할 수 있는 딥러닝 모델과 이를 각각 분류 및 인식할 수 있는 모델을 제시한다. `EXPERIMENTS`는 해당 모델들이 다양한 상황에 대해서 얼만큼 폭력적인 상황을 판단할 수 있는지 보여준다. `CONCLUSION`에서는 진행한 프로젝트에 대한 평가를 제시하며, 맘 마지막으로 `FUTURE WORK`에서는 추후 프로젝트의 개선 방안과 방향성을 제시한다.
 
- 
 ---
 
 ## RELATED WORK
@@ -40,6 +39,16 @@
 
 ## DEMO WEBSITE
 
+* Django 2.0.0
+
+![Jan-22-2020 23-44-37](https://user-images.githubusercontent.com/22045163/72903795-38194380-3d71-11ea-9505-06efe1ea844f.gif)
+
+![Jan-22-2020 23-51-29](https://user-images.githubusercontent.com/22045163/72904385-284e2f00-3d72-11ea-8465-cd4e266b04ac.gif)
+
+
+
+실시간 Detection에 대한 지원은 되지 않습니다.
+
 ---
 
 ## CONCLUSION
@@ -59,7 +68,6 @@
 - https://www.pyimagesearch.com/2019/05/20/transfer-learning-with-keras-and-deep-learning/
 - https://www.pyimagesearch.com/2019/06/03/fine-tuning-with-keras-and-deep-learning/
 - https://www.pyimagesearch.com/tag/transfer-learning/
-
 
 ---
 
