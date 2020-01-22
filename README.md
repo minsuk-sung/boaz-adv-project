@@ -39,11 +39,15 @@
 
 ## DEMO WEBSITE
 
-* Django 2.0.0
+* Django
 
-![Jan-23-2020 00-13-18](https://user-images.githubusercontent.com/22045163/72906232-38b3d900-3d75-11ea-8116-069d090334a8.gif)
+#### Demo1
 
-![Jan-22-2020 23-51-29](https://user-images.githubusercontent.com/22045163/72904385-284e2f00-3d72-11ea-8465-cd4e266b04ac.gif)
+![Jan-23-2020 00-19-33](https://user-images.githubusercontent.com/22045163/72906777-12426d80-3d76-11ea-98b8-0590d816d968.gif)
+
+#### Demo2
+
+![Jan-23-2020 00-16-18](https://user-images.githubusercontent.com/22045163/72906473-a2cc7e00-3d75-11ea-90af-93637c9f7baf.gif)
 
 
 
